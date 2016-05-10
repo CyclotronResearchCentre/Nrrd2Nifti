@@ -50,7 +50,9 @@ try
             error ('readnrrd:limitation',...
                 'Currently unable to open nrrds with more than 1 data file)');
         end
-        fid=fopen(fnData,'r',info.endian);
+        % CP, account for path
+        fnData = fullfile(fileparts(filename),info.nrrdfields.datafile);
+		fid=fopen(fnData,'r',info.endian);
     end
     
     %line skip if required
